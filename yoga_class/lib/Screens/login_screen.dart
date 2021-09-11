@@ -34,7 +34,7 @@ class LoginScreen extends StatelessWidget {
             ),
             TextField(
               textAlign: TextAlign.center,
-              obscureText: false,
+              obscureText: true,
               decoration: kTextFieldDecoration.copyWith(
                   hintText: "Enter your password"),
                   onChanged: (value) {

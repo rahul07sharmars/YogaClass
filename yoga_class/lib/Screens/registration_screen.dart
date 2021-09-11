@@ -3,14 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:yoga_class/Screens/home_screen.dart';
 import 'package:yoga_class/rounded_button.dart';
 import 'package:yoga_class/constants.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
-class RegistrationScreen extends StatelessWidget {
+
+class RegistrationScreen extends StatefulWidget {
   static String id = 'registrationscreen';
-  late final String name;
-  late final String email;
-  late final String password;
+
+  @override
+  _RegistrationScreenState createState() => _RegistrationScreenState();
+}
+
+class _RegistrationScreenState extends State<RegistrationScreen> {
+  late String name;
+
+  late String email;
+
+  late String password;
+
   final _auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,10 +36,12 @@ class RegistrationScreen extends StatelessWidget {
             ),
             TextField(
               textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.black),
               decoration:
                   kTextFieldDecoration.copyWith(hintText: "Enter your name"),
               onChanged: (value) {
                 name = value;
+                print(name);
               },
             ),
             SizedBox(
@@ -37,6 +49,7 @@ class RegistrationScreen extends StatelessWidget {
             ),
             TextField(
               textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.black),
               decoration:
                   kTextFieldDecoration.copyWith(hintText: "Enter your email"),
               onChanged: (value) {
@@ -47,8 +60,9 @@ class RegistrationScreen extends StatelessWidget {
               height: 48.0,
             ),
             TextField(
-              obscureText: false,
+              obscureText: true,
               textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.black),
               decoration: kTextFieldDecoration.copyWith(
                   hintText: "Enter your password"),
               onChanged: (value) {
@@ -61,7 +75,7 @@ class RegistrationScreen extends StatelessWidget {
             RoundedButton(
               name: 'Register',
               color: Color(0XffFFBC61),
-              onPressed: ()  async {
+              onPressed: () async {
                 //Implement registration functionality.
                 // print(email);
                 // print(password);

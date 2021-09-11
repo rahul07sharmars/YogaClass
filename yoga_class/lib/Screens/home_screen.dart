@@ -79,11 +79,11 @@ class _HomeScreenState extends State<HomeScreen> {
               SliderTheme(
                 data: SliderTheme.of(context).copyWith(
                   inactiveTrackColor: Color(0xffFfdead),
-                  activeTrackColor: Color(0xffF1e1cc),
-                  thumbColor: Color(0xFFEB1555),
-                  overlayColor: Color(0x29EB1555),
+                  activeTrackColor: Color(0xffFfa368),
+                  thumbColor: Color(0xFFf4c2c2),
+                  overlayColor: Color(0xfffbceb1),
                   thumbShape: RoundSliderThumbShape(
-                      enabledThumbRadius: 12.0, elevation: 20.0),
+                      enabledThumbRadius: 10.0, elevation: 10.0),
                 ),
                 child: Slider(
                   value: age.toDouble(),
@@ -115,26 +115,38 @@ class _HomeScreenState extends State<HomeScreen> {
                   title: Text(" 6 - 7 AM", style: klabelTextStyle),
                   value: 1,
                   groupValue: _value,
-                  onChanged: (val) {},
+                  onChanged: (val) {
+                    setState(() {
+                      _value = val ?? 0;
+                    });
+                  },
                   activeColor: Colors.orange,
                 ),
                 RadioListTile<int>(
                   title: Text("7 - 8 AM", style: klabelTextStyle),
-                  value: 1,
+                  value: 2,
                   groupValue: _value,
-                  onChanged: (val) {},
+                  onChanged: (val) {
+                    setState(() {
+                      _value = val ?? 0;
+                    });
+                  },
                   activeColor: Colors.orange,
                 ),
                 RadioListTile<int>(
                   title: Text("8 - 9 AM", style: klabelTextStyle),
-                  value: 1,
+                  value: 3,
                   groupValue: _value,
-                  onChanged: (val) {},
+                  onChanged: (val) {
+                    setState(() {
+                      _value = val ?? 0;
+                    });
+                  },
                   activeColor: Colors.orange,
                 ),
                 RadioListTile<int>(
                   title: Text("5 - 6 PM", style: klabelTextStyle),
-                  value: 1,
+                  value: 4,
                   groupValue: _value,
                   onChanged: (val) {
                     setState(() {
