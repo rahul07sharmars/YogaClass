@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:yoga_class/Screens/login_screen.dart';
+import 'package:yoga_class/Screens/registration_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   static String id = 'welcomescreen';
@@ -16,13 +18,20 @@ class WelcomeScreen extends StatelessWidget {
             SizedBox(
               height: 48.0,
             ),
-            TextButton(onPressed: (){}, child: Text('Log In'),),
+            TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, LoginScreen.id);
+              },
+              child: Text('Log In'),
+            ),
             SizedBox(
               height: 48.0,
             ),
             TextButton(
-              onPressed: () {},
-              child: Text('Log In'),
+              onPressed: () {
+                Navigator.pushNamed(context, RegistrationScreen.id);
+              },
+              child: Text('Register'),
             ),
           ],
         ),
