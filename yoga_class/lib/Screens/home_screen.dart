@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:yoga_class/constants.dart';
+import 'login_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static String id = 'homescreen';
@@ -14,8 +16,18 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Welcome, Rahul"),
+        title: Padding(
+          padding: const EdgeInsets.only(left: 8.0),
+          child: Text("Welcome, Yoga Class"),
+        ),
         backgroundColor: Color(0XffFFBC61),
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(Icons.close),
+              onPressed: () {
+                Navigator.pushNamed(context, LoginScreen.id);
+              }),
+        ],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -23,110 +35,151 @@ class _HomeScreenState extends State<HomeScreen> {
           SizedBox(
             height: 20,
           ),
-          Text(
-            "Welcome Rahul",
-            style: TextStyle(color: Colors.black),
+          Center(
+            child: Text(
+              "Welcome Rahul",
+              style: kheaderTextStyle,
+            ),
           ),
           SizedBox(
             height: 20,
           ),
-          Text(
-            "Age",
-            style: TextStyle(color: Colors.black),
-          ),
-          SliderTheme(
-            data: SliderTheme.of(context).copyWith(
-              inactiveTrackColor: Color(0xffFfdead),
-              activeTrackColor: Color(0xffF1e1cc),
-              thumbColor: Color(0xFFEB1555),
-              overlayColor: Color(0x29EB1555),
-              thumbShape: RoundSliderThumbShape(
-                  enabledThumbRadius: 12.0, elevation: 20.0),
-            ),
-            child: Slider(
-              value: 30.0,
-              min: 18.0,
-              max: 65.0,
-              onChanged: (double newValue) {
-                print(newValue.round());
-                setState(
-                  () {
-                    height = newValue.round();
-                  },
-                );
-              },
+          Expanded(
+            child: Column(
+              children: [
+                Text(
+                  "Age",
+                  style: kheaderTextStyle,
+                ),
+                SliderTheme(
+                  data: SliderTheme.of(context).copyWith(
+                    inactiveTrackColor: Color(0xffFfdead),
+                    activeTrackColor: Color(0xffF1e1cc),
+                    thumbColor: Color(0xFFEB1555),
+                    overlayColor: Color(0x29EB1555),
+                    thumbShape: RoundSliderThumbShape(
+                        enabledThumbRadius: 12.0, elevation: 20.0),
+                  ),
+                  child: Slider(
+                    value: 30.0,
+                    min: 18.0,
+                    max: 65.0,
+                    onChanged: (double newValue) {
+                      print(newValue.round());
+                      setState(
+                        () {
+                          height = newValue.round();
+                        },
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
           ),
           SizedBox(
             height: 30.0,
           ),
-          Text(
-            "Batch",
-            style: TextStyle(color: Colors.black),
-          ),
-          CheckboxListTile(
-            title: Text(
-              "6-7AM",
-              style: TextStyle(color: Color(0xffB38b6d)),
+          Expanded(
+            child: Column(
+              children: [
+                Text(
+                  "Batch",
+                  style: kheaderTextStyle,
+                ),
+                //   CheckboxListTile(
+                //     title: Text(
+                //       "6-7AM",
+                //       style: TextStyle(color: Color(0xffB38b6d)),
+                //     ),
+                //     value: checkedValue,
+                //     onChanged: (newValue) {
+                //       setState(() {
+                //         checkedValue = true;
+                //         print(checkedValue);
+                //       });
+                //     },
+                //     controlAffinity:
+                //         ListTileControlAffinity.leading, //  <-- leading Checkbox
+                //   ),CheckboxListTile(
+                //     title: Text(
+                //       "7-8AM",
+                //       style: TextStyle(color: Color(0xffB38b6d)),
+                //     ),
+                //     value: checkedValue,
+                //     onChanged: (newValue) {
+                //       setState(() {
+                //         checkedValue = true;
+                //         print(checkedValue);
+                //       });
+                //     },
+                //     controlAffinity:
+                //         ListTileControlAffinity.leading, //  <-- leading Checkbox
+                //   ),
+
+                // CheckboxListTile(
+                //     title: Text(
+                //       "8-9AM",
+                //       style: TextStyle(color: Color(0xffB38b6d)),
+                //     ),
+                //     value: checkedValue,
+                //     onChanged: (newValue) {
+                //       setState(() {
+                //         checkedValue = true;
+                //         print(checkedValue);
+                //       });
+                //     },
+                //     controlAffinity:
+                //         ListTileControlAffinity.leading, //  <-- leading Checkbox
+                //   )
+                // ,
+                // CheckboxListTile(
+                //   title: Text(
+                //     "5-6PM",
+                //     style: TextStyle(color: Color(0xffB38b6d)),
+                //   ),
+                //   value: checkedValue,
+                //   onChanged: (newValue) {
+                //     setState(() {
+                //       checkedValue = true;
+                //       print(checkedValue);
+                //     });
+                //   },
+                //   controlAffinity:
+                //       ListTileControlAffinity.leading, //  <-- leading Checkbox
+                // ),
+                RadioListTile(
+                  title: Text(" 6 - 7 AM", style: klabelTextStyle),
+                  value: 1,
+                  groupValue: 1,
+                  onChanged: (val) {},
+                  activeColor: Colors.orange,
+                ),
+                RadioListTile(
+                  title: Text("7 - 8 AM", style: klabelTextStyle),
+                  value: 1,
+                  groupValue: 1,
+                  onChanged: (val) {},
+                  activeColor: Colors.orange,
+                ),
+                RadioListTile(
+                  title: Text("8 - 9 AM", style: klabelTextStyle),
+                  value: 1,
+                  groupValue: 1,
+                  onChanged: (val) {},
+                  activeColor: Colors.orange,
+                ),
+                RadioListTile(
+                  title: Text("5 - 6 PM", style: klabelTextStyle),
+                  value: 1,
+                  groupValue: 1,
+                  onChanged: (val) {},
+                  activeColor: Colors.orange,
+                )
+              ],
             ),
-            value: checkedValue,
-            onChanged: (newValue) {
-              setState(() {
-                checkedValue = true;
-                print(checkedValue);
-              });
-            },
-            controlAffinity:
-                ListTileControlAffinity.leading, //  <-- leading Checkbox
-          ),CheckboxListTile(
-            title: Text(
-              "7-8AM",
-              style: TextStyle(color: Color(0xffB38b6d)),
-            ),
-            value: checkedValue,
-            onChanged: (newValue) {
-              setState(() {
-                checkedValue = true;
-                print(checkedValue);
-              });
-            },
-            controlAffinity:
-                ListTileControlAffinity.leading, //  <-- leading Checkbox
-          ),
-        
-        CheckboxListTile(
-            title: Text(
-              "8-9AM",
-              style: TextStyle(color: Color(0xffB38b6d)),
-            ),
-            value: checkedValue,
-            onChanged: (newValue) {
-              setState(() {
-                checkedValue = true;
-                print(checkedValue);
-              });
-            },
-            controlAffinity:
-                ListTileControlAffinity.leading, //  <-- leading Checkbox
-          )
-        ,
-          CheckboxListTile(
-            title: Text(
-              "5-6PM",
-              style: TextStyle(color: Color(0xffB38b6d)),
-            ),
-            value: checkedValue,
-            onChanged: (newValue) {
-              setState(() {
-                checkedValue = true;
-                print(checkedValue);
-              });
-            },
-            controlAffinity:
-                ListTileControlAffinity.leading, //  <-- leading Checkbox
           )
         ],
-        
       ),
     );
   }

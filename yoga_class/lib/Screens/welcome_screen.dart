@@ -15,7 +15,9 @@ class WelcomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text('Welcome'),
+            Text('Welcome',style: TextStyle(color: Color(0xff39191D),
+            fontSize: 45,
+            ),),
             SizedBox(
               height: 48.0,
             ),

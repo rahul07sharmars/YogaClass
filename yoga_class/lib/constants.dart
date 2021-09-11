@@ -1,5 +1,17 @@
 import 'package:flutter/material.dart';
 
+const klabelTextStyle = TextStyle(
+  fontSize: 25,
+  fontWeight: FontWeight.w300,
+  color: Color(0xffB38b6d),
+);
+
+const kheaderTextStyle = TextStyle(
+  fontSize: 35,
+  fontWeight: FontWeight.w800,
+  color: Color(0xffB38b6d),
+);
+
 const kTextFieldDecoration = InputDecoration(
   hintStyle: TextStyle(color: Colors.grey),
   //hintText: 'Enter your password',
