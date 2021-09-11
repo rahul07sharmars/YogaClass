@@ -11,7 +11,7 @@ class YogaApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData.light(),
+        theme: ThemeData.light( ).copyWith(textTheme: TextTheme(bodyText1: TextStyle(color:Color(0xFFFBE9BA),), ),),
         // theme: ThemeData.dark().copyWith(
         //   textTheme:TextTheme(
         //     bodyText1:TextStyle(
