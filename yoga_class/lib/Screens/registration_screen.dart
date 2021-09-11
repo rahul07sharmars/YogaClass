@@ -15,7 +15,7 @@ class RegistrationScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text('Register Here!'),
+            Header(name: "Register"),
             SizedBox(
               height: 48.0,
             ),

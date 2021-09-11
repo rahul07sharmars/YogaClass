@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yoga_class/Screens/login_screen.dart';
 import 'package:yoga_class/Screens/registration_screen.dart';
+import 'package:yoga_class/constants.dart';
 import 'package:yoga_class/rounded_button.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -15,18 +16,11 @@ class WelcomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text('Welcome',style: TextStyle(color: Color(0xff39191D),
-            fontSize: 45,
-            ),),
+            Header(name: "Welcome"),
             SizedBox(
               height: 48.0,
             ),
-            // TextButton(
-            //   onPressed: () {
-            //     Navigator.pushNamed(context, RegistrationScreen.id);
-            //   },
-            //   child: Text('Login IN'),
-            // ),
+            
             RoundedButton(name:'Log In', color: Color(0XffFFBC61), onPressed:() {
                 Navigator.pushNamed(context, LoginScreen.id);
               },),

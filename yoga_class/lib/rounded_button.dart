@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'constants.dart';
 
 class RoundedButton extends StatelessWidget {
   RoundedButton(
@@ -24,6 +25,20 @@ class RoundedButton extends StatelessWidget {
           minWidth: 200.0,
           child: Text(name),
         ),
+      ),
+    );
+  }
+}
+
+class Header extends StatelessWidget {
+  Header({required this.name});
+  final String name;
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text(
+        name,
+        style: kheaderTextStyle.copyWith(fontSize: 55),
       ),
     );
   }

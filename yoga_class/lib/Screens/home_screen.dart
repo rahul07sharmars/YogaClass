@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yoga_class/constants.dart';
+import 'package:yoga_class/rounded_button.dart';
 import 'login_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -44,38 +45,36 @@ class _HomeScreenState extends State<HomeScreen> {
           SizedBox(
             height: 20,
           ),
-          Expanded(
-            child: Column(
-              children: [
-                Text(
-                  "Age",
-                  style: kheaderTextStyle,
+          Column(
+            children: [
+              Text(
+                "Age",
+                style: kheaderTextStyle,
+              ),
+              SliderTheme(
+                data: SliderTheme.of(context).copyWith(
+                  inactiveTrackColor: Color(0xffFfdead),
+                  activeTrackColor: Color(0xffF1e1cc),
+                  thumbColor: Color(0xFFEB1555),
+                  overlayColor: Color(0x29EB1555),
+                  thumbShape: RoundSliderThumbShape(
+                      enabledThumbRadius: 12.0, elevation: 20.0),
                 ),
-                SliderTheme(
-                  data: SliderTheme.of(context).copyWith(
-                    inactiveTrackColor: Color(0xffFfdead),
-                    activeTrackColor: Color(0xffF1e1cc),
-                    thumbColor: Color(0xFFEB1555),
-                    overlayColor: Color(0x29EB1555),
-                    thumbShape: RoundSliderThumbShape(
-                        enabledThumbRadius: 12.0, elevation: 20.0),
-                  ),
-                  child: Slider(
-                    value: 30.0,
-                    min: 18.0,
-                    max: 65.0,
-                    onChanged: (double newValue) {
-                      print(newValue.round());
-                      setState(
-                        () {
-                          height = newValue.round();
-                        },
-                      );
-                    },
-                  ),
+                child: Slider(
+                  value: 30.0,
+                  min: 18.0,
+                  max: 65.0,
+                  onChanged: (double newValue) {
+                    print(newValue.round());
+                    setState(
+                      () {
+                        height = newValue.round();
+                      },
+                    );
+                  },
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
           SizedBox(
             height: 30.0,
@@ -87,67 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   "Batch",
                   style: kheaderTextStyle,
                 ),
-                //   CheckboxListTile(
-                //     title: Text(
-                //       "6-7AM",
-                //       style: TextStyle(color: Color(0xffB38b6d)),
-                //     ),
-                //     value: checkedValue,
-                //     onChanged: (newValue) {
-                //       setState(() {
-                //         checkedValue = true;
-                //         print(checkedValue);
-                //       });
-                //     },
-                //     controlAffinity:
-                //         ListTileControlAffinity.leading, //  <-- leading Checkbox
-                //   ),CheckboxListTile(
-                //     title: Text(
-                //       "7-8AM",
-                //       style: TextStyle(color: Color(0xffB38b6d)),
-                //     ),
-                //     value: checkedValue,
-                //     onChanged: (newValue) {
-                //       setState(() {
-                //         checkedValue = true;
-                //         print(checkedValue);
-                //       });
-                //     },
-                //     controlAffinity:
-                //         ListTileControlAffinity.leading, //  <-- leading Checkbox
-                //   ),
-
-                // CheckboxListTile(
-                //     title: Text(
-                //       "8-9AM",
-                //       style: TextStyle(color: Color(0xffB38b6d)),
-                //     ),
-                //     value: checkedValue,
-                //     onChanged: (newValue) {
-                //       setState(() {
-                //         checkedValue = true;
-                //         print(checkedValue);
-                //       });
-                //     },
-                //     controlAffinity:
-                //         ListTileControlAffinity.leading, //  <-- leading Checkbox
-                //   )
-                // ,
-                // CheckboxListTile(
-                //   title: Text(
-                //     "5-6PM",
-                //     style: TextStyle(color: Color(0xffB38b6d)),
-                //   ),
-                //   value: checkedValue,
-                //   onChanged: (newValue) {
-                //     setState(() {
-                //       checkedValue = true;
-                //       print(checkedValue);
-                //     });
-                //   },
-                //   controlAffinity:
-                //       ListTileControlAffinity.leading, //  <-- leading Checkbox
-                // ),
+                
                 RadioListTile(
                   title: Text(" 6 - 7 AM", style: klabelTextStyle),
                   value: 1,
@@ -178,7 +117,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 )
               ],
             ),
-          )
+          ),
+        RoundedButton(name: "Pay Fee", color: Color(0XffFFBC61), onPressed:(){},),
         ],
       ),
     );

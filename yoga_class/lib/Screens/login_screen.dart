@@ -15,7 +15,7 @@ class LoginScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text('Login Page'),
+            Header(name: "LogIn "),
             SizedBox(
               height: 48.0,
             ),

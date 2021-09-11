@@ -10,6 +10,7 @@ const kheaderTextStyle = TextStyle(
   fontSize: 35,
   fontWeight: FontWeight.w800,
   color: Color(0xffB38b6d),
+  
 );
 
 const kTextFieldDecoration = InputDecoration(
