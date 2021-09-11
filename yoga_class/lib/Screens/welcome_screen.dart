@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yoga_class/Screens/login_screen.dart';
 import 'package:yoga_class/Screens/registration_screen.dart';
+import 'package:yoga_class/rounded_button.dart';
 
 class WelcomeScreen extends StatelessWidget {
   static String id = 'welcomescreen';
@@ -18,21 +19,33 @@ class WelcomeScreen extends StatelessWidget {
             SizedBox(
               height: 48.0,
             ),
-            TextButton(
-              onPressed: () {
+            // TextButton(
+            //   onPressed: () {
+            //     Navigator.pushNamed(context, RegistrationScreen.id);
+            //   },
+            //   child: Text('Login IN'),
+            // ),
+            RoundedButton(name:'Log In', color: Colors.blueAccent, onPressed:() {
                 Navigator.pushNamed(context, LoginScreen.id);
-              },
-              child: Text('Log In'),
-            ),
+              },),
+              
+            
             SizedBox(
               height: 48.0,
             ),
-            TextButton(
+            RoundedButton(
+              name: 'Register',
+              color: Colors.blueAccent,
               onPressed: () {
-                Navigator.pushNamed(context, RegistrationScreen.id);
+                 Navigator.pushNamed(context, RegistrationScreen.id);
               },
-              child: Text('Register'),
             ),
+            // TextButton(
+            //   onPressed: () {
+            //     Navigator.pushNamed(context, RegistrationScreen.id);
+            //   },
+            //   child: Text('Register'),
+            // ),
           ],
         ),
       ),

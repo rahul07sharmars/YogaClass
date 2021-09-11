@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yoga_class/Screens/home_screen.dart';
+import 'package:yoga_class/rounded_button.dart';
 
 class RegistrationScreen extends StatelessWidget {
   static String id = 'registrationscreen';
@@ -25,12 +26,19 @@ class RegistrationScreen extends StatelessWidget {
             SizedBox(
               height: 48.0,
             ),
-            TextButton(
+            RoundedButton(
+              name: 'Register',
+              color: Colors.blueAccent,
               onPressed: () {
                 Navigator.pushNamed(context, HomeScreen.id);
               },
-              child: Text('Register'),
             ),
+            // TextButton(
+            //   onPressed: () {
+            //     Navigator.pushNamed(context, HomeScreen.id);
+            //   },
+            //   child: Text('Register'),
+            // ),
           ],
         ),
       ),
