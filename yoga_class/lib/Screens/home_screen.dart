@@ -11,7 +11,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late int age;
+  late int age=30;
   bool checkedValue = false;
   int _value = 0;
   String name = "Rahul";
@@ -63,11 +63,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       enabledThumbRadius: 12.0, elevation: 20.0),
                 ),
                 child: Slider(
-                  value: 30.0,
+                  value: age.toDouble(),
                   min: 18.0,
                   max: 65.0,
                   onChanged: (double newValue) {
-                    print(newValue.round());
+                    // print(newValue.round());
                     setState(
                       () {
                         age = newValue.round();
@@ -113,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   title: Text("5 - 6 PM", style: klabelTextStyle),
                   value: 1,
                   groupValue: _value,
-                  onChanged: (val) {
+                  onChanged: ( val) {
                     setState(() {
                       //_value = val;
                     });
