@@ -104,59 +104,57 @@ class _HomeScreenState extends State<HomeScreen> {
           SizedBox(
             height: 30.0,
           ),
-          Expanded(
-            child: Column(
-              children: [
-                Text(
-                  "Batch",
-                  style: kheaderTextStyle,
-                ),
-                RadioListTile<int>(
-                  title: Text(" 6 - 7 AM", style: klabelTextStyle),
-                  value: 1,
-                  groupValue: _value,
-                  onChanged: (val) {
-                    setState(() {
-                      _value = val ?? 0;
-                    });
-                  },
-                  activeColor: Colors.orange,
-                ),
-                RadioListTile<int>(
-                  title: Text("7 - 8 AM", style: klabelTextStyle),
-                  value: 2,
-                  groupValue: _value,
-                  onChanged: (val) {
-                    setState(() {
-                      _value = val ?? 0;
-                    });
-                  },
-                  activeColor: Colors.orange,
-                ),
-                RadioListTile<int>(
-                  title: Text("8 - 9 AM", style: klabelTextStyle),
-                  value: 3,
-                  groupValue: _value,
-                  onChanged: (val) {
-                    setState(() {
-                      _value = val ?? 0;
-                    });
-                  },
-                  activeColor: Colors.orange,
-                ),
-                RadioListTile<int>(
-                  title: Text("5 - 6 PM", style: klabelTextStyle),
-                  value: 4,
-                  groupValue: _value,
-                  onChanged: (val) {
-                    setState(() {
-                      _value = val ?? 0;
-                    });
-                  },
-                  activeColor: Colors.orange,
-                )
-              ],
-            ),
+          Column(
+            children: [
+              Text(
+                "Batch",
+                style: kheaderTextStyle,
+              ),
+              RadioListTile<int>(
+                title: Text(" 6 - 7 AM", style: klabelTextStyle),
+                value: 1,
+                groupValue: _value,
+                onChanged: (val) {
+                  setState(() {
+                    _value = val ?? 0;
+                  });
+                },
+                activeColor: Colors.orange,
+              ),
+              RadioListTile<int>(
+                title: Text("7 - 8 AM", style: klabelTextStyle),
+                value: 2,
+                groupValue: _value,
+                onChanged: (val) {
+                  setState(() {
+                    _value = val ?? 0;
+                  });
+                },
+                activeColor: Colors.orange,
+              ),
+              RadioListTile<int>(
+                title: Text("8 - 9 AM", style: klabelTextStyle),
+                value: 3,
+                groupValue: _value,
+                onChanged: (val) {
+                  setState(() {
+                    _value = val ?? 0;
+                  });
+                },
+                activeColor: Colors.orange,
+              ),
+              RadioListTile<int>(
+                title: Text("5 - 6 PM", style: klabelTextStyle),
+                value: 4,
+                groupValue: _value,
+                onChanged: (val) {
+                  setState(() {
+                    _value = val ?? 0;
+                  });
+                },
+                activeColor: Colors.orange,
+              )
+            ],
           ),
           RoundedButton(
             name: "Pay Fee",

@@ -2,12 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:yoga_class/Screens/home_screen.dart';
 import 'package:yoga_class/rounded_button.dart';
 import 'package:yoga_class/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   static String id = 'loginscreen';
 
-  late final String email;
-  late final String password;
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  late String email;
+
+  late String password;
+  final _auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,9 +32,10 @@ class LoginScreen extends StatelessWidget {
             ),
             TextField(
               textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.black),
               decoration:
                   kTextFieldDecoration.copyWith(hintText: "Enter your email"),
-                  onChanged: (value) {
+              onChanged: (value) {
                 email = value;
               },
             ),
@@ -35,10 +45,11 @@ class LoginScreen extends StatelessWidget {
             TextField(
               textAlign: TextAlign.center,
               obscureText: true,
+              style: TextStyle(color: Colors.black),
               decoration: kTextFieldDecoration.copyWith(
                   hintText: "Enter your password"),
-                  onChanged: (value) {
-                password= value;
+              onChanged: (value) {
+                password = value;
               },
             ),
             SizedBox(
@@ -47,8 +58,14 @@ class LoginScreen extends StatelessWidget {
             RoundedButton(
               name: 'Login In',
               color: Color(0XffFFBC61),
-              onPressed: () {
-                Navigator.pushNamed(context, HomeScreen.id);
+              onPressed: () async {
+                try {
+                  final user = _auth.signInWithEmailAndPassword(
+                      email: email, password: password);
+                  Navigator.pushNamed(context, HomeScreen.id);
+                } catch (e) {
+                  print(e);
+                }
               },
             ),
             // TextButton(

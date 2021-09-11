@@ -23,7 +23,7 @@ class RoundedButton extends StatelessWidget {
           },
           height: 42.0,
           minWidth: 200.0,
-          child: Text(name),
+          child: Text(name ,style: TextStyle(fontSize: 25),),
         ),
       ),
     );
