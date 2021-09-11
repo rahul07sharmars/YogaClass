@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'Screens/welcome_screen.dart';
-
+import 'Screens/login_screen.dart';
+import 'Screens/registration_screen.dart';
 void main() => runApp(YogaApp());
 
 class YogaApp extends StatelessWidget {
@@ -16,6 +17,8 @@ class YogaApp extends StatelessWidget {
       initialRoute: WelcomeScreen.id,
       routes:{
         WelcomeScreen.id:(context)=>WelcomeScreen(),
+        LoginScreen.id:(context)=>LoginScreen(),
+        RegistrationScreen.id:(context)=>RegistrationScreen(),
       }
     );
   }
