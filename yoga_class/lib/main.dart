@@ -3,8 +3,15 @@ import 'Screens/welcome_screen.dart';
 import 'Screens/login_screen.dart';
 import 'Screens/registration_screen.dart';
 import 'Screens/home_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() => runApp(YogaApp());
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(YogaApp());
+}
+// void main() => runApp(YogaApp());
 
 class YogaApp extends StatelessWidget {
   @override

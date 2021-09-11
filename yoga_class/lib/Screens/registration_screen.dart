@@ -1,13 +1,16 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:yoga_class/Screens/home_screen.dart';
 import 'package:yoga_class/rounded_button.dart';
 import 'package:yoga_class/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class RegistrationScreen extends StatelessWidget {
   static String id = 'registrationscreen';
   late final String name;
   late final String email;
   late final String password;
+  final _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,8 +61,19 @@ class RegistrationScreen extends StatelessWidget {
             RoundedButton(
               name: 'Register',
               color: Color(0XffFFBC61),
-              onPressed: () {
-                Navigator.pushNamed(context, HomeScreen.id);
+              onPressed: ()  async {
+                //Implement registration functionality.
+                // print(email);
+                // print(password);
+                try {
+                  final newUser = await _auth.createUserWithEmailAndPassword(
+                      email: email, password: password);
+                  if (newUser != null) {
+                    Navigator.pushNamed(context, HomeScreen.id);
+                  }
+                } catch (e) {
+                  print(e);
+                }
               },
             ),
             // TextButton(
