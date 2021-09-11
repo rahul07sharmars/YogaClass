@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yoga_class/Screens/home_screen.dart';
 import 'package:yoga_class/rounded_button.dart';
+import 'package:yoga_class/constants.dart';
 
 class LoginScreen extends StatelessWidget {
   static String id = 'loginscreen';
@@ -18,17 +19,25 @@ class LoginScreen extends StatelessWidget {
             SizedBox(
               height: 48.0,
             ),
-            TextField(),
+            TextField(
+               textAlign: TextAlign.center,
+              decoration:
+                  kTextFieldDecoration.copyWith(hintText: "Enter your email"),
+            ),
             SizedBox(
               height: 48.0,
             ),
-            TextField(),
+            TextField(
+              textAlign: TextAlign.center,
+              decoration:
+                  kTextFieldDecoration.copyWith(hintText: "Enter your password"),
+            ),
             SizedBox(
               height: 48.0,
             ),
             RoundedButton(
               name: 'Login In',
-              color: Colors.blueAccent,
+              color: Color(0XffFFBC61),
               onPressed: () {
                 Navigator.pushNamed(context, HomeScreen.id);
               },

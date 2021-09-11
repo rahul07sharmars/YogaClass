@@ -25,7 +25,7 @@ class WelcomeScreen extends StatelessWidget {
             //   },
             //   child: Text('Login IN'),
             // ),
-            RoundedButton(name:'Log In', color: Colors.blueAccent, onPressed:() {
+            RoundedButton(name:'Log In', color: Color(0XffFFBC61), onPressed:() {
                 Navigator.pushNamed(context, LoginScreen.id);
               },),
               
@@ -35,7 +35,7 @@ class WelcomeScreen extends StatelessWidget {
             ),
             RoundedButton(
               name: 'Register',
-              color: Colors.blueAccent,
+              color: Color(0XffFFBC61),
               onPressed: () {
                  Navigator.pushNamed(context, RegistrationScreen.id);
               },
