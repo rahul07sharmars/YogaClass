@@ -11,8 +11,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late int height;
+  late int age;
   bool checkedValue = false;
+  int _value = 0;
+  String name = "Rahul";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Center(
             child: Text(
-              "Welcome Rahul",
+              "Welcome $name",
               style: kheaderTextStyle,
             ),
           ),
@@ -68,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     print(newValue.round());
                     setState(
                       () {
-                        height = newValue.round();
+                        age = newValue.round();
                       },
                     );
                   },
@@ -86,39 +88,46 @@ class _HomeScreenState extends State<HomeScreen> {
                   "Batch",
                   style: kheaderTextStyle,
                 ),
-                
-                RadioListTile(
+                RadioListTile<int>(
                   title: Text(" 6 - 7 AM", style: klabelTextStyle),
                   value: 1,
-                  groupValue: 1,
+                  groupValue: _value,
                   onChanged: (val) {},
                   activeColor: Colors.orange,
                 ),
-                RadioListTile(
+                RadioListTile<int>(
                   title: Text("7 - 8 AM", style: klabelTextStyle),
                   value: 1,
-                  groupValue: 1,
+                  groupValue: _value,
                   onChanged: (val) {},
                   activeColor: Colors.orange,
                 ),
-                RadioListTile(
+                RadioListTile<int>(
                   title: Text("8 - 9 AM", style: klabelTextStyle),
                   value: 1,
-                  groupValue: 1,
+                  groupValue: _value,
                   onChanged: (val) {},
                   activeColor: Colors.orange,
                 ),
-                RadioListTile(
+                RadioListTile<int>(
                   title: Text("5 - 6 PM", style: klabelTextStyle),
                   value: 1,
-                  groupValue: 1,
-                  onChanged: (val) {},
+                  groupValue: _value,
+                  onChanged: (val) {
+                    setState(() {
+                      //_value = val;
+                    });
+                  },
                   activeColor: Colors.orange,
                 )
               ],
             ),
           ),
-        RoundedButton(name: "Pay Fee", color: Color(0XffFFBC61), onPressed:(){},),
+          RoundedButton(
+            name: "Pay Fee",
+            color: Color(0XffFFBC61),
+            onPressed: () {},
+          ),
         ],
       ),
     );

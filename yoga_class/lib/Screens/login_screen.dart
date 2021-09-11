@@ -6,6 +6,8 @@ import 'package:yoga_class/constants.dart';
 class LoginScreen extends StatelessWidget {
   static String id = 'loginscreen';
 
+  late final String email;
+  late final String password;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,17 +22,24 @@ class LoginScreen extends StatelessWidget {
               height: 48.0,
             ),
             TextField(
-               textAlign: TextAlign.center,
+              textAlign: TextAlign.center,
               decoration:
                   kTextFieldDecoration.copyWith(hintText: "Enter your email"),
+                  onChanged: (value) {
+                email = value;
+              },
             ),
             SizedBox(
               height: 48.0,
             ),
             TextField(
               textAlign: TextAlign.center,
-              decoration:
-                  kTextFieldDecoration.copyWith(hintText: "Enter your password"),
+              obscureText: false,
+              decoration: kTextFieldDecoration.copyWith(
+                  hintText: "Enter your password"),
+                  onChanged: (value) {
+                password= value;
+              },
             ),
             SizedBox(
               height: 48.0,

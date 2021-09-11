@@ -5,7 +5,9 @@ import 'package:yoga_class/constants.dart';
 
 class RegistrationScreen extends StatelessWidget {
   static String id = 'registrationscreen';
-
+  late final String name;
+  late final String email;
+  late final String password;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,16 +23,34 @@ class RegistrationScreen extends StatelessWidget {
             ),
             TextField(
               textAlign: TextAlign.center,
-              decoration: kTextFieldDecoration.copyWith(
-                  hintText: "Enter your email"),
+              decoration:
+                  kTextFieldDecoration.copyWith(hintText: "Enter your name"),
+              onChanged: (value) {
+                name = value;
+              },
             ),
             SizedBox(
               height: 48.0,
             ),
             TextField(
-              textAlign:TextAlign.center,
-              decoration: kTextFieldDecoration.copyWith(hintText: "Enter your password"),
-
+              textAlign: TextAlign.center,
+              decoration:
+                  kTextFieldDecoration.copyWith(hintText: "Enter your email"),
+              onChanged: (value) {
+                email = value;
+              },
+            ),
+            SizedBox(
+              height: 48.0,
+            ),
+            TextField(
+              obscureText: false,
+              textAlign: TextAlign.center,
+              decoration: kTextFieldDecoration.copyWith(
+                  hintText: "Enter your password"),
+              onChanged: (value) {
+                password = value;
+              },
             ),
             SizedBox(
               height: 48.0,
