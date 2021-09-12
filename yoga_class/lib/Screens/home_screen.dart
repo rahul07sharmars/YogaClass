@@ -3,6 +3,7 @@ import 'package:yoga_class/constants.dart';
 import 'package:yoga_class/rounded_button.dart';
 import 'login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:intl/intl.dart';
 
 class HomeScreen extends StatefulWidget {
   static String id = 'homescreen';
@@ -18,11 +19,12 @@ class _HomeScreenState extends State<HomeScreen> {
   String name = "Rahul";
   final _auth = FirebaseAuth.instance;
   late User loggedInUser;
-
+  // var dt = DateTime.now();
+  // var newFormat = DateFormat("yy-MM-dd");
   @override
   void initState() {
     super.initState();
-    getCurrentUser(); 
+    getCurrentUser();
   }
 
   void getCurrentUser() {
@@ -44,20 +46,29 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Padding(
           padding: const EdgeInsets.only(left: 8.0),
-          child: Text("Welcome, Yoga Class"),
+          child: Text("Welcome to Yoga Class"),
         ),
         backgroundColor: Color(0XffFFBC61),
         actions: <Widget>[
           IconButton(
-              icon: Icon(Icons.close),
+              icon: Icon(Icons.exit_to_app),
               onPressed: () {
                 Navigator.pushNamed(context, LoginScreen.id);
               }),
         ],
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+      body: ListView(
         children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              
+              Text(
+                DateFormat.yMMMd().format(DateTime.now(),),
+                style: klabelTextStyle,
+              ),
+            ],
+          ),
           SizedBox(
             height: 20,
           ),
@@ -75,6 +86,20 @@ class _HomeScreenState extends State<HomeScreen> {
               Text(
                 "Age",
                 style: kheaderTextStyle,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                // crossAxisAlignment: CrossAxisAlignment.baseline,
+                children: [
+                  Text(
+                    age.toString(),
+                    style: klabelTextStyle,
+                  ),
+                  Text(
+                    "  years",
+                    style: klabelTextStyle,
+                  ),
+                ],
               ),
               SliderTheme(
                 data: SliderTheme.of(context).copyWith(

@@ -27,99 +27,102 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Header(name: "Register"),
-            SizedBox(
-              height: 48.0,
-            ),
-            TextField(
-              textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.black),
-              decoration:
-                  kTextFieldDecoration.copyWith(hintText: "Enter your name"),
-              onChanged: (value) {
-                name = value;
-                print(name);
-              },
-            ),
-            SizedBox(
-              height: 48.0,
-            ),
-            // TextField(
-            //   textAlign: TextAlign.center,
-            //   style: TextStyle(color: Colors.black),
-            //   decoration:
-            //       kTextFieldDecoration.copyWith(hintText: "Enter your gender"),
-            //   onChanged: (value) {
-            //     gender = value;
-            //     print(gender);
-            //   },
-            // ),
-            SizedBox(
-              height: 48.0,
-            ),
-            TextField(
-              textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.black),
-              decoration:
-                  kTextFieldDecoration.copyWith(hintText: "Enter your email"),
-              onChanged: (value) {
-                email = value;
-                print(email);
-              },
-            ),
-            SizedBox(
-              height: 48.0,
-            ),
-            TextField(
-              obscureText: true,
-              textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.black),
-              decoration: kTextFieldDecoration.copyWith(
-                  hintText: "Enter your password"),
-              onChanged: (value) {
-                password = value;
-                print(password);
-              },
-            ),
-            SizedBox(
-              height: 48.0,
-            ),
-            RoundedButton(
-              name: 'Register',
-              color: Color(0XffFFBC61),
-              onPressed: () async {
-                //Implement registration functionality.
-                // print(email);
-                // print(password);
-                try {
-                  final newUser = await _auth.createUserWithEmailAndPassword(
-                      email: email, password: password);
-                  if (newUser != null) {
-                    // await DataBaseManager()
-                    //     .createUserData(name, gender, newUser.user!.uid);
-                    
-                    Navigator.pushNamed(context, LoginScreen.id);
-                  }
-                } catch (e) {
-                  print(e);
+      body: ListView(
+        padding:  EdgeInsets.symmetric(horizontal: 24.0),
+        children: [
+           Header(name: "Register"),
+          SizedBox(
+            height: 48.0,
+          ),
+          TextField(
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.black),
+            decoration:
+                kTextFieldDecoration.copyWith(hintText: "Enter your name"),
+            onChanged: (value) {
+              name = value;
+              print(name);
+            },
+          ),
+          SizedBox(
+            height: 48.0,
+          ),
+          TextField(
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.black),
+            decoration:
+                kTextFieldDecoration.copyWith(hintText: "Enter your gender"),
+            onChanged: (value) {
+              gender = value;
+              print(gender);
+            },
+          ),
+          SizedBox(
+            height: 48.0,
+          ),
+          TextField(
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.black),
+            decoration:
+                kTextFieldDecoration.copyWith(hintText: "Enter your email"),
+            onChanged: (value) {
+              email = value;
+              print(email);
+            },
+          ),
+          SizedBox(
+            height: 48.0,
+          ),
+          TextField(
+            obscureText: true,
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.black),
+            decoration:
+                kTextFieldDecoration.copyWith(hintText: "Enter your password"),
+            onChanged: (value) {
+              password = value;
+              print(password);
+            },
+          ),
+          SizedBox(
+            height: 48.0,
+          ),
+          RoundedButton(
+            name: 'Register',
+            color: Color(0XffFFBC61),
+            onPressed: () async {
+              //Implement registration functionality.
+              // print(email);
+              // print(password);
+              try {
+                final newUser = await _auth.createUserWithEmailAndPassword(
+                    email: email, password: password);
+                if (newUser != null) {
+                  await DataBaseManager()
+                      .createUserData(name, gender, newUser.user!.uid);
+
+                  Navigator.pushNamed(context, LoginScreen.id);
                 }
-              },
-            ),
-            // TextButton(
-            //   onPressed: () {
-            //     Navigator.pushNamed(context, HomeScreen.id);
-            //   },
-            //   child: Text('Register'),
-            // ),
-          ],
-        ),
+              } catch (e) {
+                print(e);
+              }
+            },
+          ),
+          // TextButton(
+          //   onPressed: () {
+          //     Navigator.pushNamed(context, HomeScreen.id);
+          //   },
+          //   child: Text('Register'),
+          // ),
+        ],
       ),
+      // body: Padding(
+      //   padding: EdgeInsets.symmetric(horizontal: 24.0),
+      //   child: Column(
+      //     ma
+        
+      //   ),
+      // ),
     );
   }
 }
