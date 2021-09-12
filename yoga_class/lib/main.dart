@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yoga_class/Screens/members_screen.dart';
 import 'Screens/welcome_screen.dart';
 import 'Screens/login_screen.dart';
 import 'Screens/registration_screen.dart';
@@ -31,6 +32,7 @@ class YogaApp extends StatelessWidget {
           LoginScreen.id: (context) => LoginScreen(),
           RegistrationScreen.id: (context) => RegistrationScreen(),
           HomeScreen.id: (context) => HomeScreen(),
+          MemberScreen.id:(context) =>MemberScreen(),
         });
   }
 }

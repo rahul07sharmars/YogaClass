@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:yoga_class/Screens/members_screen.dart';
 import 'package:yoga_class/constants.dart';
+import 'package:yoga_class/database.dart';
 import 'package:yoga_class/rounded_button.dart';
 import 'login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -19,12 +21,17 @@ class _HomeScreenState extends State<HomeScreen> {
   String name = "Rahul";
   final _auth = FirebaseAuth.instance;
   late User loggedInUser;
+  final String dt = DateFormat.yMMMd().format(
+    DateTime.now(),
+  );
+
   // var dt = DateTime.now();
   // var newFormat = DateFormat("yy-MM-dd");
   @override
   void initState() {
     super.initState();
     getCurrentUser();
+    // getUserName();
   }
 
   void getCurrentUser() {
@@ -39,6 +46,16 @@ class _HomeScreenState extends State<HomeScreen> {
       print(e);
     }
   }
+
+  // void getUserName() async{
+  //   final User user = _auth.currentUser!;
+  //   final uid = user.uid;
+  //   if (uid != null) {
+  //     name = await GetUserName(uid).toString();
+  //   }
+
+  //   // GetUserName(documentId)
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -62,9 +79,8 @@ class _HomeScreenState extends State<HomeScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              
               Text(
-                DateFormat.yMMMd().format(DateTime.now(),),
+                dt,
                 style: klabelTextStyle,
               ),
             ],
@@ -184,7 +200,17 @@ class _HomeScreenState extends State<HomeScreen> {
           RoundedButton(
             name: "Pay Fee",
             color: Color(0XffFFBC61),
-            onPressed: () {},
+            onPressed: () async {
+              try {
+                final user = _auth.currentUser!;
+                if (user != null) {
+                  await DataBaseManager().createData(dt, _value, user.uid);
+                  Navigator.pushNamed(context, MemberScreen.id);
+                }
+              } catch (e) {
+                print(e);
+              }
+            },
           ),
         ],
       ),
