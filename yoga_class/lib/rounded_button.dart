@@ -3,11 +3,15 @@ import 'constants.dart';
 
 class RoundedButton extends StatelessWidget {
   RoundedButton(
-      {required this.name, required this.color, required this.onPressed});
+      {required this.name,
+      required this.color,
+      required this.onPressed,
+      required this.enable});
 
   final String name;
   final Color color;
   final Function onPressed;
+  final enable;
 
   @override
   Widget build(BuildContext context) {
@@ -18,12 +22,17 @@ class RoundedButton extends StatelessWidget {
         color: color,
         borderRadius: BorderRadius.circular(30.0),
         child: MaterialButton(
+          disabledColor: Colors.orange[50],
+          disabledTextColor: Colors.blueGrey[400],
           onPressed: () {
             onPressed();
           },
           height: 42.0,
           minWidth: 200.0,
-          child: Text(name ,style: TextStyle(fontSize: 25),),
+          child: Text(
+            name,
+            style: TextStyle(fontSize: 25),
+          ),
         ),
       ),
     );

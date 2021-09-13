@@ -88,6 +88,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             height: 48.0,
           ),
           RoundedButton(
+            enable: true,
             name: 'Register',
             color: Color(0XffFFBC61),
             onPressed: () async {
@@ -103,8 +104,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
                   Navigator.pushNamed(context, LoginScreen.id);
                 }
-              } catch (e) {
-                print(e);
+              } on FirebaseAuthException catch (e) {
+                print(e.message);
               }
             },
           ),

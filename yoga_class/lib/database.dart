@@ -8,15 +8,13 @@ class DataBaseManager {
       FirebaseFirestore.instance.collection('YogaMembers');
   Future<void> createUserData(String name, String gender, String uid) async {
     return await profileInfo.doc(uid).set(
-        {
-            'name': name,
-            'gender': gender,
-            'date':"",
-            'batch':"",
-          },
+      {
+        'name': name,
+        'gender': gender,
+        'date': "",
+        'batch': "",
+      },
     ).whenComplete(() => print("Notes item added to the database"));
-    
-    
   }
 
   Future<void> createData(String date, int batch, String uid) async {
@@ -27,6 +25,11 @@ class DataBaseManager {
       },
     ).whenComplete(() => print("Notes item update to the database"));
   }
+  Future<void> readUser(String uid) async{
+    return await profileInfo.doc(uid).get().then((DocumentSnapshot documentSnapshot){
+      print(documentSnapshot['name']);
+    },).whenComplete(() => print("Notes item are readed from database"));
+  }
 }
 
 // class CreateUser {
@@ -34,40 +37,63 @@ class DataBaseManager {
 //       FirebaseFirestore.instance.collection('YogaMembers');
 // }
 
-// class GetUserName extends StatefulWidget {
-  
-//   GetUserName(this.documentId);
-// final String documentId;
+class GetUserName extends StatefulWidget {
+  GetUserName(this.documentId);
+  final String documentId;
 
-//   @override
-//   _GetUserNameState createState() => _GetUserNameState();
-// }
+  @override
+  _GetUserNameState createState() => _GetUserNameState();
+}
 
-// class _GetUserNameState extends State<GetUserName> {
-//   @override
-//   Widget build(BuildContext context) {
-//     CollectionReference users = FirebaseFirestore.instance.collection('YogaMembers');
+class _GetUserNameState extends State<GetUserName> {
+  @override
+  Widget build(BuildContext context) {
+    CollectionReference users =
+        FirebaseFirestore.instance.collection('YogaMembers');
 
-//     return FutureBuilder<DocumentSnapshot>(
-//       future: users.doc(widget.documentId).get(),
-//       builder:
-//           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-//         if (snapshot.hasError) {
-//           return Text("Something went wrong");
-//         }
+    return
+     FutureBuilder<DocumentSnapshot>(
+      future: users.doc(widget.documentId).get(),
+      builder:
+          (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+        if (snapshot.hasError) {
+          return Text("Something went wrong");
+        }
 
-//         if (snapshot.hasData && !snapshot.data!.exists) {
-//           return Text("Document does not exist");
-//         }
+        if (snapshot.hasData && !snapshot.data!.exists) {
+          return Text("Document does not exist");
+        }
 
-//         if (snapshot.connectionState == ConnectionState.done) {
-//           Map<String, dynamic> data =
-//               snapshot.data!.data() as Map<String, dynamic>;
-//           return Text(" $data['name']");
-//         }
+        if (snapshot.connectionState == ConnectionState.done) {
+          Map<String, dynamic> data =
+              snapshot.data!.data() as Map<String, dynamic>;
+          print(data['name']);
+          print(data['name']);
+          print(data['name']);
+          print(data['name']);
+          print(data['name']);
+          print(data['name']);
+          print(data['name']);
+          print(data['name']);print(data['name']);
+          print(data['name']);
+          print(data['name']);
+          print(data['name']);
+          print(data['name']);
+          print(data['name']);
+          print(data['name']);
+          print(data['name']);print(data['name']);
+          print(data['name']);
+          print(data['name']);
+          print(data['name']);
+          print(data['name']);
+          print(data['name']);print(data['name']);
+          print(data['name']);
 
-//         return Text("loading");
-//       },
-//     );
-//   }
-// }
+          return Text(" $data['name']");
+        }
+
+        return Text("loading");
+      },
+    );
+  }
+}

@@ -6,6 +6,7 @@ import 'package:yoga_class/rounded_button.dart';
 import 'login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:intl/intl.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HomeScreen extends StatefulWidget {
   static String id = 'homescreen';
@@ -24,6 +25,9 @@ class _HomeScreenState extends State<HomeScreen> {
   final String dt = DateFormat.yMMMd().format(
     DateTime.now(),
   );
+  bool checkboxstate = false;
+  Function onPressed = () {};
+  // Colors color=Color();
 
   // var dt = DateTime.now();
   // var newFormat = DateFormat("yy-MM-dd");
@@ -31,14 +35,16 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     getCurrentUser();
-    // getUserName();
+
+    checksubscription();
   }
 
+  void checksubscription() {}
   void getCurrentUser() {
     try {
-      final user = _auth.currentUser!;
-      if (user != null) {
-        loggedInUser = user;
+      final currentuser = _auth.currentUser!;
+      if (currentuser != null) {
+        loggedInUser = currentuser;
 
         print(loggedInUser.email);
       }
@@ -47,15 +53,16 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  // void getUserName() async{
-  //   final User user = _auth.currentUser!;
-  //   final uid = user.uid;
-  //   if (uid != null) {
-  //     name = await GetUserName(uid).toString();
-  //   }
-
-  //   // GetUserName(documentId)
-  // }
+  getUserName() async {
+    try {
+      final currentuser = _auth.currentUser!;
+      if (currentuser != null) {
+       await DataBaseManager().readUser(currentuser.uid);
+      }
+    } on FirebaseAuthException catch (e) {
+      print(e.message);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -197,20 +204,47 @@ class _HomeScreenState extends State<HomeScreen> {
               )
             ],
           ),
+          SizedBox(
+            height: 30.0,
+          ),
+          Row(
+            children: [
+              Checkbox(
+                value: checkboxstate,
+                onChanged: (val) {
+                  setState(
+                    () {
+                      checkboxstate = val!;
+                      if (checkboxstate) {
+                        onPressed = () async {
+                          try {
+                            final user = _auth.currentUser!;
+                            if (user != null) {
+                              await DataBaseManager()
+                                  .createData(dt, _value, user.uid);
+                              Navigator.pushNamed(context, MemberScreen.id);
+                            }
+                          } on FirebaseAuthException catch (e) {
+                            print(e.message);
+                          }
+                        };
+                      }
+                      print(checkboxstate);
+                    },
+                  );
+                },
+              ),
+              Text(
+                'Fee Paid',
+                style: klabelTextStyle,
+              )
+            ],
+          ),
           RoundedButton(
             name: "Pay Fee",
+            enable: checkboxstate,
             color: Color(0XffFFBC61),
-            onPressed: () async {
-              try {
-                final user = _auth.currentUser!;
-                if (user != null) {
-                  await DataBaseManager().createData(dt, _value, user.uid);
-                  Navigator.pushNamed(context, MemberScreen.id);
-                }
-              } catch (e) {
-                print(e);
-              }
-            },
+            onPressed: onPressed,
           ),
         ],
       ),

@@ -17,6 +17,24 @@ class _LoginScreenState extends State<LoginScreen> {
   late String password;
   final _auth = FirebaseAuth.instance;
 
+  showError(String errormessage) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('ERROR'),
+            content: Text(errormessage),
+            actions: <Widget>[
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('OK'))
+            ],
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,6 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 48.0,
             ),
             RoundedButton(
+              enable: true,
               name: 'Login In',
               color: Color(0XffFFBC61),
               onPressed: () async {
@@ -63,8 +82,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   final user = _auth.signInWithEmailAndPassword(
                       email: email, password: password);
                   Navigator.pushNamed(context, HomeScreen.id);
-                } catch (e) {
-                  print(e);
+                } on FirebaseAuthException catch (e) {
+                  print(e.message);
+                  // showError(e.message??'');
                 }
               },
             ),

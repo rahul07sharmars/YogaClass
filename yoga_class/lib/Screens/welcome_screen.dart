@@ -21,7 +21,9 @@ class WelcomeScreen extends StatelessWidget {
               height: 48.0,
             ),
             
-            RoundedButton(name:'Log In', color: Color(0XffFFBC61), onPressed:() {
+            RoundedButton(
+              enable: true,
+              name:'Log In', color: Color(0XffFFBC61), onPressed:() {
                 Navigator.pushNamed(context, LoginScreen.id);
               },),
               
@@ -30,6 +32,7 @@ class WelcomeScreen extends StatelessWidget {
               height: 48.0,
             ),
             RoundedButton(
+              enable: true,
               name: 'Register',
               color: Color(0XffFFBC61),
               onPressed: () {
