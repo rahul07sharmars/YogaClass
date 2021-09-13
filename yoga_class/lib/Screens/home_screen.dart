@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   late int age = 30;
   bool checkedValue = false;
   int _value = 0;
-  String name = "Rahul";
+  late String name = "<Name>";
   final _auth = FirebaseAuth.instance;
   late User loggedInUser;
   final String dt = DateFormat.yMMMd().format(
@@ -27,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
   );
   bool checkboxstate = false;
   Function onPressed = () {};
+  bool isFetching = false;
   // Colors color=Color();
 
   // var dt = DateTime.now();
@@ -37,6 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
     getCurrentUser();
 
     checksubscription();
+    getUserName();
   }
 
   void checksubscription() {}
@@ -53,12 +55,16 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  getUserName() async {
+  void getUserName() async {
     try {
       final currentuser = _auth.currentUser!;
       if (currentuser != null) {
-       await DataBaseManager().readUser(currentuser.uid);
+        name = await DataBaseManager().getCurrentUserData(currentuser.uid);
+        print(name);
       }
+      setState(() {
+        isFetching = true;
+      });
     } on FirebaseAuthException catch (e) {
       print(e.message);
     }
@@ -228,12 +234,17 @@ class _HomeScreenState extends State<HomeScreen> {
                             print(e.message);
                           }
                         };
+                      } else {
+                        onPressed = () {};
                       }
                       print(checkboxstate);
                     },
                   );
                 },
               ),
+              //CompletePayment()
+              //work here as stated in problem statement
+
               Text(
                 'Fee Paid',
                 style: klabelTextStyle,
@@ -241,8 +252,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
           RoundedButton(
-            name: "Pay Fee",
-            enable: checkboxstate,
+            name: "Become Member",
+            enable: false,
             color: Color(0XffFFBC61),
             onPressed: onPressed,
           ),

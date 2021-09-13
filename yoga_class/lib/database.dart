@@ -25,11 +25,19 @@ class DataBaseManager {
       },
     ).whenComplete(() => print("Notes item update to the database"));
   }
-  Future<void> readUser(String uid) async{
-    return await profileInfo.doc(uid).get().then((DocumentSnapshot documentSnapshot){
-      print(documentSnapshot['name']);
-    },).whenComplete(() => print("Notes item are readed from database"));
+
+  Future getCurrentUserData(String uid) async {
+    try {
+      DocumentSnapshot ds = await profileInfo.doc(uid).get();
+      String name = ds.get('name');
+      // String gender = ds.get('gender');
+      print(name);
+      return name;
+    } on FirebaseException catch (e) {
+      print(e.message);
+    }
   }
+  
 }
 
 // class CreateUser {
@@ -51,8 +59,7 @@ class _GetUserNameState extends State<GetUserName> {
     CollectionReference users =
         FirebaseFirestore.instance.collection('YogaMembers');
 
-    return
-     FutureBuilder<DocumentSnapshot>(
+    return FutureBuilder<DocumentSnapshot>(
       future: users.doc(widget.documentId).get(),
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
@@ -74,19 +81,22 @@ class _GetUserNameState extends State<GetUserName> {
           print(data['name']);
           print(data['name']);
           print(data['name']);
-          print(data['name']);print(data['name']);
           print(data['name']);
           print(data['name']);
           print(data['name']);
           print(data['name']);
           print(data['name']);
           print(data['name']);
-          print(data['name']);print(data['name']);
           print(data['name']);
           print(data['name']);
           print(data['name']);
           print(data['name']);
-          print(data['name']);print(data['name']);
+          print(data['name']);
+          print(data['name']);
+          print(data['name']);
+          print(data['name']);
+          print(data['name']);
+          print(data['name']);
           print(data['name']);
 
           return Text(" $data['name']");

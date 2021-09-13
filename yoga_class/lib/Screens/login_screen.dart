@@ -28,6 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
               TextButton(
                   onPressed: () {
                     Navigator.of(context).pop();
+                    print("User has signout");
                   },
                   child: Text('OK'))
             ],
@@ -88,12 +89,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 }
               },
             ),
-            // TextButton(
-            //   onPressed: () {
-            //     Navigator.pushNamed(context, HomeScreen.id);
-            //   },
-            //   child: Text('Login '),
-            // ),
           ],
         ),
       ),
