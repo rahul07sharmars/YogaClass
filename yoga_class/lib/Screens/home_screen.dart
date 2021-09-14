@@ -6,7 +6,7 @@ import 'package:yoga_class/rounded_button.dart';
 import 'login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:intl/intl.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 class HomeScreen extends StatefulWidget {
   static String id = 'homescreen';
@@ -26,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
     DateTime.now(),
   );
   bool checkboxstate = false;
-  Function onPressed = () {};
+ 
   bool isFetching = false;
   // Colors color=Color();
 
@@ -218,28 +218,9 @@ class _HomeScreenState extends State<HomeScreen> {
               Checkbox(
                 value: checkboxstate,
                 onChanged: (val) {
-                  setState(
-                    () {
-                      checkboxstate = val!;
-                      if (checkboxstate) {
-                        onPressed = () async {
-                          try {
-                            final user = _auth.currentUser!;
-                            if (user != null) {
-                              await DataBaseManager()
-                                  .createData(dt, _value, user.uid);
-                              Navigator.pushNamed(context, MemberScreen.id);
-                            }
-                          } on FirebaseAuthException catch (e) {
-                            print(e.message);
-                          }
-                        };
-                      } else {
-                        onPressed = () {};
-                      }
-                      print(checkboxstate);
-                    },
-                  );
+                  setState(() {
+                    checkboxstate = val!;
+                  });
                 },
               ),
               //CompletePayment()
@@ -253,9 +234,20 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           RoundedButton(
             name: "Become Member",
-            enable: false,
+            enable: checkboxstate && _value>0,
             color: Color(0XffFFBC61),
-            onPressed: onPressed,
+            onPressed: () async {
+                          try {
+                            final user = _auth.currentUser!;
+                            if (user != null) {
+                              await DataBaseManager()
+                                  .createData(dt, _value, user.uid);
+                              Navigator.pushNamed(context, MemberScreen.id);
+                            }
+                          } on FirebaseAuthException catch (e) {
+                            print(e.message);
+                          }
+          },
           ),
         ],
       ),

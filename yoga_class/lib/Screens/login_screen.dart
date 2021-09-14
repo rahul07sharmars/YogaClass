@@ -80,9 +80,10 @@ class _LoginScreenState extends State<LoginScreen> {
               color: Color(0XffFFBC61),
               onPressed: () async {
                 try {
-                  final user = _auth.signInWithEmailAndPassword(
+                  final user =await  _auth.signInWithEmailAndPassword(
                       email: email, password: password);
-                  Navigator.pushNamed(context, HomeScreen.id);
+                      if(user!=null){
+                  Navigator.pushNamed(context, HomeScreen.id);}
                 } on FirebaseAuthException catch (e) {
                   print(e.message);
                   // showError(e.message??'');
