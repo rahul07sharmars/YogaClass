@@ -10,7 +10,6 @@ const kheaderTextStyle = TextStyle(
   fontSize: 35,
   fontWeight: FontWeight.w800,
   color: Color(0xffB38b6d),
-  
 );
 
 const kTextFieldDecoration = InputDecoration(
@@ -32,3 +31,5 @@ const kTextFieldDecoration = InputDecoration(
     ),
   ),
 );
+String text =
+    " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed efficitur magna dui, ut fend odio ut lorem pulvinar, sit amet sodales massa efficitur. Suspendisse eget felis vel purus convallis varius. Aliquam ullamcorper ipsum odio, a facilisis lorem venenatis ut.";

@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 import 'package:flutter/material.dart';
 import 'package:yoga_class/Screens/login_screen.dart';
 import 'package:yoga_class/database.dart';
@@ -23,14 +23,32 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   late String password;
 
   final _auth = FirebaseAuth.instance;
+  showError(String errormessage) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('ERROR'),
+            content: Text(errormessage),
+            actions: <Widget>[
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    print("User has signout");
+                  },
+                  child: Text('OK'))
+            ],
+          );
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
-        padding:  EdgeInsets.symmetric(horizontal: 24.0),
+        padding: EdgeInsets.symmetric(horizontal: 24.0),
         children: [
-           Header(name: "Register"),
+          Header(name: "Register"),
           SizedBox(
             height: 48.0,
           ),
@@ -96,7 +114,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               // print(email);
               // print(password);
               try {
-                
                 final newUser = await _auth.createUserWithEmailAndPassword(
                     email: email, password: password);
                 if (newUser != null) {
@@ -107,6 +124,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 }
               } on FirebaseAuthException catch (e) {
                 print(e.message);
+                showError(e.message??"Some Problem has occured!");
               }
             },
           ),
@@ -122,7 +140,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       //   padding: EdgeInsets.symmetric(horizontal: 24.0),
       //   child: Column(
       //     ma
-        
+
       //   ),
       // ),
     );

@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
 
 // import 'package:firebase_auth/firebase_auth.dart';
 
-class DataBaseManager {
+class DataBaseManager2 {
   // final _auth = FirebaseAuth.instance;
   final CollectionReference profileInfo =
       FirebaseFirestore.instance.collection('YogaMembers');
@@ -12,25 +13,29 @@ class DataBaseManager {
       {
         'name': name,
         'gender': gender,
-        'date': "01-01-1900",
+        'date': 1900-01-01,
         'batch': 0,
       },
     ).whenComplete(() => print("Notes item added to the database"));
   }
 
-  Future<void> createData(String date, int batch, String uid) async {
+  Future<void> createData(DateTime date, int batch, String uid) async {
     return await profileInfo.doc(uid).update(
       {
-        'date': date,
+//         DateTime currentPhoneDate = DateTime.now(),//DateTime
+
+            // Timestamp myTimeStamp = Timestamp.fromDate(date),
+
+        'date': Timestamp.fromDate(date) as Timestamp,
         'batch': batch,
       },
     ).whenComplete(() => print("Notes item update to the database"));
   }
+
   Future<void> updateDate(String date, String uid) async {
     return await profileInfo.doc(uid).update(
       {
         'date': date,
-        
       },
     ).whenComplete(() => print("Date is updated in the database"));
   }
@@ -46,6 +51,7 @@ class DataBaseManager {
       print(e.message);
     }
   }
+
   Future getCurrentUserBatch(String uid) async {
     try {
       DocumentSnapshot ds = await profileInfo.doc(uid).get();
@@ -63,7 +69,7 @@ class DataBaseManager {
       DocumentSnapshot ds = await profileInfo.doc(uid).get();
       String date = ds.get('date');
       // String gender = ds.get('gender');
-      print(date);
+      print("date $date");
       return date;
     } on FirebaseException catch (e) {
       print(e.message);

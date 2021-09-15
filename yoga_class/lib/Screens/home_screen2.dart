@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:yoga_class/Screens/members_screen.dart';
 import 'package:yoga_class/constants.dart';
-import 'package:yoga_class/database.dart';
+import 'package:yoga_class/database2.dart';
 import 'package:yoga_class/rounded_button.dart';
 import 'login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:intl/intl.dart';
 
-class HomeScreen extends StatefulWidget {
-  static String id = 'homescreen';
+class HomeScreen2 extends StatefulWidget {
+  static String id = "homescreen2";
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _HomeScreen2State createState() => _HomeScreen2State();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreen2State extends State<HomeScreen2> {
   late int age = 30;
   bool checkedValue = false;
   int _value = 0;
@@ -24,9 +24,10 @@ class _HomeScreenState extends State<HomeScreen> {
   // DateTime now = DateTime.now();
   // final DateTime dt =
   //     DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
-  String dt = DateFormat.yMd().format(
-    DateTime.now(),
-  );
+  // String dt = DateFormat.yMd().format(
+  //   DateTime.now(),
+  // );
+  DateTime dt = DateTime.now();
   bool checkboxstate = false;
   late DateTime registrationDate;
   bool isFetching = false;
@@ -41,10 +42,10 @@ class _HomeScreenState extends State<HomeScreen> {
     // getCurrentUserData();
     // checksubscription();
     getUserName();
-    setState(() {});
+    setState(() {
+      print("regirationDate $registrationDate");
+    });
   }
-
-  
 
   void getCurrentUser() {
     try {
@@ -85,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
     try {
       final currentuser = _auth.currentUser!;
       if (currentuser != null) {
-        name = await DataBaseManager().getCurrentUserName(currentuser.uid);
+        name = await DataBaseManager2().getCurrentUserName(currentuser.uid);
         print(name);
       }
       setState(() {
@@ -266,7 +267,7 @@ class _HomeScreenState extends State<HomeScreen> {
               try {
                 final user = _auth.currentUser!;
                 if (user != null) {
-                  await DataBaseManager().createData(dt, _value, user.uid);
+                  await DataBaseManager2().createData(dt, _value, user.uid);
                   Navigator.pushNamed(context, MemberScreen.id);
                 }
               } on FirebaseAuthException catch (e) {

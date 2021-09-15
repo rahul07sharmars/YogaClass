@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yoga_class/Screens/login_screen.dart';
 import 'package:yoga_class/Screens/registration_screen.dart';
-import 'package:yoga_class/constants.dart';
+
 import 'package:yoga_class/rounded_button.dart';
 
 class WelcomeScreen extends StatelessWidget {

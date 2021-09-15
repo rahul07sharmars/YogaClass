@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yoga_class/constants.dart';
 import 'login_screen.dart';
 
 class MemberScreen extends StatelessWidget {
@@ -18,6 +19,16 @@ class MemberScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(context, LoginScreen.id);
               }),
+        ],
+      ),
+      body: ListView(
+        padding: EdgeInsets.symmetric(horizontal: 24.0),
+        children: [
+          Text(
+            "About Yoga",
+            style: kheaderTextStyle,
+          ),
+          Text(text, style: klabelTextStyle),
         ],
       ),
     );
